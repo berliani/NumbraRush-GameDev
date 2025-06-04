@@ -8,7 +8,7 @@ public class QuizUIManager : MonoBehaviour
     public GameObject quizPanel;
     public Text questionText;
     public Button[] answerButtons;
-
+    public Text FeedbackAnswer;
     private int correctAnswerIndex;
 
     void Awake()
@@ -36,14 +36,39 @@ public class QuizUIManager : MonoBehaviour
     }
 
     void AnswerSelected(int index)
+{
+    questionText.gameObject.SetActive(false); // sembunyikan soal
+
+    if (index == correctAnswerIndex)
     {
-        Debug.Log("Tombol ke-" + index + " dipilih");
-
-        if (index == correctAnswerIndex)
-            Debug.Log("Jawaban Benar!");
-        else
-            Debug.Log("Jawaban Salah!");
-
-        quizPanel.SetActive(false);
+        FeedbackAnswer.text = "Jawaban Benar!";
+        FeedbackAnswer.color = Color.green;
+        Debug.Log("Jawaban Benar!");
     }
+    else
+    {
+        FeedbackAnswer.text = "Jawaban Salah!";
+        FeedbackAnswer.color = Color.red;
+        Debug.Log("Jawaban Salah!");
+    }
+
+    FeedbackAnswer.gameObject.SetActive(true);
+
+    Invoke(nameof(ResetUI), 2f); // tampilkan ulang soal dan tutup quiz setelah 2 detik
+}
+
+void ResetUI()
+{
+    questionText.gameObject.SetActive(true);
+    FeedbackAnswer.gameObject.SetActive(false);
+    quizPanel.SetActive(false);
+}
+
+
+void HideQuizPanel()
+{
+    quizPanel.SetActive(false);
+    FeedbackAnswer.text = ""; // reset
+}
+
 }
