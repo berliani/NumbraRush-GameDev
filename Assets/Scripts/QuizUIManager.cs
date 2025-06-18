@@ -44,6 +44,7 @@ public class QuizUIManager : MonoBehaviour
         FeedbackAnswer.text = "Jawaban Benar!";
         FeedbackAnswer.color = Color.green;
         Debug.Log("Jawaban Benar!");
+        GameManager.Instance.TambahPoin(2);
     }
     else
     {

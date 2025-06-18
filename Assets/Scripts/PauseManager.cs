@@ -24,10 +24,4 @@ public class PauseManager : MonoBehaviour
         pausePanel.SetActive(false);
         Time.timeScale = 1f; // resume game
     }
-
-    public void ExitToMainMenu()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("mainmenu"); // ganti sesuai nama scene menu
-    }
 }
