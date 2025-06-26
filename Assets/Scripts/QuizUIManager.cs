@@ -43,6 +43,7 @@ public class QuizUIManager : MonoBehaviour
     {
         FeedbackAnswer.text = "Jawaban Benar!";
         FeedbackAnswer.color = Color.green;
+        SoundManager.Instance.PlayCorrectSound(); 
         Debug.Log("Jawaban Benar!");
         GameManager.Instance.TambahPoin(2);
     }
@@ -50,12 +51,15 @@ public class QuizUIManager : MonoBehaviour
     {
         FeedbackAnswer.text = "Jawaban Salah!";
         FeedbackAnswer.color = Color.red;
+        SoundManager.Instance.PlayWrongSound(); 
         Debug.Log("Jawaban Salah!");
     }
 
     FeedbackAnswer.gameObject.SetActive(true);
 
-    Invoke(nameof(ResetUI), 2f); // tampilkan ulang soal dan tutup quiz setelah 2 detik
+    Invoke(nameof(ResetUI), 1f); // tampilkan ulang soal dan tutup quiz setelah 2 detik
+    FindObjectOfType<QuestionProgres>().TambahJawaban();
+
 }
 
 void ResetUI()

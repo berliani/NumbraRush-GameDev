@@ -13,6 +13,7 @@ public class PlayerDeadHandler : MonoBehaviour
             isDead = true;
             Debug.Log("Player jatuh ke air!");
             GameManager.Instance.ShowGameOverPanel();
+            SoundManager.Instance.PlayFailedSound(); 
         }
     }
 }

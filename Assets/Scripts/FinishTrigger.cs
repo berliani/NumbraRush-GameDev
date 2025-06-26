@@ -11,6 +11,7 @@ public class FinishTrigger : MonoBehaviour
         {
             triggered = true;
             GameManager.Instance.ShowFinishPanel(); // panggil panel selesai
+            SoundManager.Instance.PlayFinishSound(); 
         }
     }
 }

@@ -25,11 +25,19 @@ public class GameManager : MonoBehaviour
     }
 
     public void ShowFinishPanel()
-    {
-        finishPanel.SetActive(true);
-        skorText.text = "Poin kamu: " + poin;
-        Time.timeScale = 0f; // freeze game
-    }
+{
+    finishPanel.SetActive(true);
+    skorText.text = "Poin kamu: " + poin;
+    Time.timeScale = 0f;
+
+    int levelIndex = PlayerPrefs.GetInt("CurrentLevel", 1); // default ke 1
+    string key = "Level" + levelIndex + "_Point";
+
+    PlayerPrefs.SetInt(key, poin);
+    PlayerPrefs.Save();
+}
+
+
 
     public void RestartGame()
     {
