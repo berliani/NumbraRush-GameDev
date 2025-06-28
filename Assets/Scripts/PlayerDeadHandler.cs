@@ -16,4 +16,14 @@ public class PlayerDeadHandler : MonoBehaviour
             SoundManager.Instance.PlayFailedSound(); 
         }
     }
+
+    public void HandleTimeOutDeath()
+    {
+        if (isDead) return;
+
+        isDead = true;
+        Debug.Log("Player kalah karena waktu habis!");
+        GameManager.Instance.ShowGameOverPanel();
+        SoundManager.Instance.PlayFailedSound(); 
+    }
 }

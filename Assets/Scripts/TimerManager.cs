@@ -42,9 +42,15 @@ public class TimerManager : MonoBehaviour
     }
 
     void TriggerGameOver()
+{
+    Debug.Log("Waktu Habis!");
+    gameOverPanel.SetActive(true);
+
+    // Panggil kekalahan karena waktu habis dari PlayerDeadHandler
+    PlayerDeadHandler playerDeadHandler = FindObjectOfType<PlayerDeadHandler>();
+    if (playerDeadHandler != null)
     {
-        Debug.Log("Waktu Habis!");
-        gameOverPanel.SetActive(true);
-        // kamu bisa tambahkan fungsi stop movement player juga di sini jika ingin
+        playerDeadHandler.HandleTimeOutDeath();
     }
+}
 }
